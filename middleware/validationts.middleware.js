@@ -65,14 +65,8 @@ exports.createReview = [
   validFields,
 ];
 
-exports.updateReview = [
+exports.validExistReview = [
   body('comment').notEmpty().withMessage('Comment cannot be empty'),
   body('rating').notEmpty().withMessage('Rating cannot be empty'),
-  validFields,
-];
-
-exports.validOrders = [
-  body('quantity').notEmpty().withMessage('Quantity cannot be empty'),
-  body('mealId').notEmpty().withMessage('MealdId cannot be empty'),
   validFields,
 ];

@@ -42,15 +42,15 @@ router
 
 router.post(
   '/reviews/:id',
+  validMiddleware.validExistReview,
   restaurantMiddleware.validRestaurant,
-  validMiddleware.createReview,
   restaurantController.createReviewsRestaurant
 );
 
 router
   .route('/reviews/:restaurantId/:id')
   .patch(
-    validMiddleware.updateReview,
+    validMiddleware.validExistReview,
     restaurantMiddleware.validRestaurant,
     reviewMiddleware.validReview,
     userMiddleware.protectAccountOwner,
