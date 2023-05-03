@@ -36,8 +36,6 @@ exports.createOrders = catchAsync(async (req, res, next) => {
 });
 
 exports.findAllOrders = catchAsync(async (req, res, next) => {
-  const { sessionUser } = req;
-
   const userOne = await Orders.findAll({
     attributes: {
       exclude: ['mealiId', 'totalPrice', 'quantity', 'status'],
@@ -45,7 +43,6 @@ exports.findAllOrders = catchAsync(async (req, res, next) => {
 
     where: {
       status: 'active',
-      // id: sessionUser.id,
     },
     include: [
       {
