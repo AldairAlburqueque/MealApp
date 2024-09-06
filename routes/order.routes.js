@@ -16,7 +16,7 @@ router
   .route('/:id')
   .patch(
     ordersMiddleware.orderExist,
-    protectMiddleware.protectAccountOwner,
+    protectMiddleware.protectAccountOwner, 
     createController.updateOrders
   )
   .delete(

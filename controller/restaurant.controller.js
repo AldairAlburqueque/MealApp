@@ -1,4 +1,4 @@
-const { json } = require('sequelize');
+// const { json } = require('sequelize');
 const Restaurants = require('../models/restaurants.model');
 const Reviews = require('../models/reviews.model');
 const User = require('../models/users.model');
@@ -40,7 +40,7 @@ exports.findOneRestaurant = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    message: 'Hello, has seleccionado un restaurante',
+    message: 'Hola, has seleccionado un restaurante',
     restaurant,
   });
 });

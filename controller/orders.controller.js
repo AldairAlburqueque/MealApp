@@ -62,17 +62,6 @@ exports.findAllOrders = catchAsync(async (req, res, next) => {
     ],
   });
 
-  // const userOne = await Meals.findAll({
-  //   where: {
-  //     status: 'active',
-  //   },
-  //   include: [
-  //     {
-  //       model: Restaurants,
-  //     },
-  //   ],
-  // });
-
   res.status(200).json({
     status: 'success',
     message: 'Aqui tiene su pedido que ordenó',
