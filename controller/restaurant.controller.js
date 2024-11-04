@@ -115,6 +115,6 @@ exports.deleteReviewsRestaurant = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    message: 'La review  ha sido eliminada',
+    message: 'La review  ha sido eliminada exitosamente',
   });
 });
