@@ -47,6 +47,10 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.protectAccountOwner = catchAsync(async (req, res, next) => {
   const { user, sessionUser } = req;
 
+  // Agregar logs para depuración
+  console.log('User: ', user);
+  console.log('Session User: ', sessionUser);
+
   if (user.id !== sessionUser.id) {
     return next(new AppError('You do not own this account.', 401));
   }
@@ -81,6 +85,7 @@ exports.validIfExistUser = catchAsync(async (req, res, next) => {
   }
 
   req.user = user;
+
   next();
 });
 
@@ -99,4 +104,5 @@ exports.userReviews = catchAsync(async (req, res, next) => {
 
   req.user = user;
   req.reviews = user.reviews;
+  next();
 });

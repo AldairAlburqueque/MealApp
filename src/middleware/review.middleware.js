@@ -1,5 +1,6 @@
-const Reviews = require('../models/reviews.model');
 const User = require('../models/users.model');
+const Reviews = require('../models/reviews.model');
+
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -14,6 +15,7 @@ exports.validReview = catchAsync(async (req, res, next) => {
     include: [
       {
         model: User,
+        required: true,
         attributes: {
           exclude: ['email', 'password', 'role', 'status'],
         },

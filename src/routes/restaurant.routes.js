@@ -2,9 +2,10 @@ const express = require('express');
 
 const restaurantController = require('../controller/restaurant.controller');
 
-const validMiddleware = require('../middleware/validationts.middleware');
 const userMiddleware = require('../middleware/user.middleware');
 const restaurantMiddleware = require('../middleware/restaurant.middleware');
+const validMiddleware = require('../middleware/validationts.middleware');
+
 const reviewMiddleware = require('../middleware/review.middleware');
 
 const router = express.Router();
@@ -47,13 +48,16 @@ router.post(
   restaurantController.createReviewsRestaurant
 );
 
+//Esto no esta funcionando hay que arreglarlo
 router
   .route('/reviews/:restaurantId/:id')
   .patch(
-    validMiddleware.updateReview,
     restaurantMiddleware.validRestaurant,
     reviewMiddleware.validReview,
+    userMiddleware.validIfExistUser,
     userMiddleware.protectAccountOwner,
+    validMiddleware.updateReview,
+
     restaurantController.updateReviewsRestaurant
   )
   .delete(

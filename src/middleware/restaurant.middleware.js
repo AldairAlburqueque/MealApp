@@ -4,7 +4,7 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 exports.validRestaurant = catchAsync(async (req, res, next) => {
-  const { id, restaurantId } = req.params;
+  const { restaurantId, id } = req.params;
 
   const restaurant = await Restaurants.findOne({
     where: {
@@ -23,5 +23,6 @@ exports.validRestaurant = catchAsync(async (req, res, next) => {
   }
 
   req.restaurant = restaurant;
+
   next();
 });

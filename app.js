@@ -2,14 +2,14 @@ const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 
-const AppError = require('./utils/appError');
-const globalErrorHandler = require('./controller/error.controller');
+const AppError = require('./src/utils/appError');
+const globalErrorHandler = require('./src/controller/error.controller');
 
-const userRouter = require('./routes/user.routes');
+const userRouter = require('./src/routes/user.routes');
 
-const mealRouter = require('./routes/meal.routes');
-const orderRouter = require('./routes/order.routes');
-const restaurantRouter = require('./routes/restaurant.routes');
+const mealRouter = require('./src/routes/meal.routes');
+const orderRouter = require('./src/routes/order.routes');
+const restaurantRouter = require('./src/routes/restaurant.routes');
 
 const app = express();
 
