@@ -139,7 +139,7 @@ exports.updateReviewsRestaurant = catchAsync(async (req, res, next) => {
 
   const roundedRating = Math.floor(averageRating); // Redondear a un entero
 
-  // Actualizar el restaurante con el nuevo promedio
+  //Actualizar el restaurante con el nuevo promedio
   await restaurant.update({ rating: roundedRating });
 
   res.status(200).json({
