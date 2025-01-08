@@ -83,6 +83,27 @@ exports.createReviewsRestaurant = catchAsync(async (req, res, next) => {
     restaurantId: restaurant.id,
   });
 
+  // Obtener todas las reseñas activas del restaurante
+  const activeReviews = await Reviews.findAll({
+    where: {
+      restaurantId: restaurant.id,
+      status: 'active',
+    },
+  });
+
+  // Calcular el promedio del rating
+  const totalRatings = activeReviews.reduce(
+    (sum, review) => sum + review.rating,
+    0
+  );
+
+  const averageRating = (totalRatings / activeReviews.length).toFixed(2); // Redondear a 2 decimales
+
+  const roundedRating = Math.floor(averageRating); // Redondear a un entero
+
+  // Actualizar el restaurante con el nuevo promedio
+  await restaurant.update({ rating: roundedRating });
+
   res.status(200).json({
     status: 'success',
     message: 'La reseña nueva ha sido creada',
@@ -93,11 +114,33 @@ exports.createReviewsRestaurant = catchAsync(async (req, res, next) => {
 exports.updateReviewsRestaurant = catchAsync(async (req, res, next) => {
   const { comment, rating } = req.body;
   const { review } = req;
+  const { restaurant } = req;
 
   await review.update({
     comment,
     rating,
   });
+
+  // Obtener todas las reseñas activas del restaurante
+  const activeReviews = await Reviews.findAll({
+    where: {
+      restaurantId: restaurant.id,
+      status: 'active',
+    },
+  });
+
+  // Calcular el promedio del rating
+  const totalRatings = activeReviews.reduce(
+    (sum, review) => sum + review.rating,
+    0
+  );
+
+  const averageRating = (totalRatings / activeReviews.length).toFixed(2); // Redondear a 2 decimales
+
+  const roundedRating = Math.floor(averageRating); // Redondear a un entero
+
+  // Actualizar el restaurante con el nuevo promedio
+  await restaurant.update({ rating: roundedRating });
 
   res.status(200).json({
     status: 'success',
