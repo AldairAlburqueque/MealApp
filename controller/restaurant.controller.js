@@ -90,14 +90,14 @@ exports.createReviewsRestaurant = catchAsync(async (req, res, next) => {
       status: 'active',
     },
   });
-
+  console.log(activeReviews);
   // Calcular el promedio del rating
   const totalRatings = activeReviews.reduce(
     (sum, review) => sum + review.rating,
     0
   );
 
-  const averageRating = (totalRatings / activeReviews.length).toFixed(2); // Redondear a 2 decimales
+  const averageRating = totalRatings / activeReviews.length;
 
   const roundedRating = Math.floor(averageRating); // Redondear a un entero
 
@@ -135,7 +135,7 @@ exports.updateReviewsRestaurant = catchAsync(async (req, res, next) => {
     0
   );
 
-  const averageRating = (totalRatings / activeReviews.length).toFixed(2); // Redondear a 2 decimales
+  const averageRating = totalRatings / activeReviews.length;
 
   const roundedRating = Math.floor(averageRating); // Redondear a un entero
 

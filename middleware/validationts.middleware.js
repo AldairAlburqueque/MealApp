@@ -48,7 +48,7 @@ exports.validCreateRestaurant = [
   body('rating')
     .notEmpty()
     .withMessage('Rating cannot be empty')
-    .isLength({ min: 1, max: 5 })
+    .isInt({ min: 1, max: 5 })
     .withMessage('Rating only accepts numbers from 1 to 5'),
   validFields,
 ];
@@ -61,13 +61,21 @@ exports.validCreateMeals = [
 
 exports.createReview = [
   body('comment').notEmpty().withMessage('Comment cannot be empty'),
-  body('rating').notEmpty().withMessage('Rating cannot be empty'),
+  body('rating')
+    .notEmpty()
+    .withMessage('Rating cannot be empty')
+    .isInt({ min: 1, max: 5 })
+    .withMessage('Rating only accepts numbers from 1 to 5'),
   validFields,
 ];
 
 exports.updateReview = [
   body('comment').notEmpty().withMessage('Comment cannot be empty'),
-  body('rating').notEmpty().withMessage('Rating cannot be empty'),
+  body('rating')
+    .notEmpty()
+    .withMessage('Rating cannot be empty')
+    .isInt({ min: 1, max: 5 })
+    .withMessage('Rating only accepts numbers from 1 to 5'),
   validFields,
 ];
 
