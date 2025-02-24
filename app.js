@@ -6,10 +6,11 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controller/error.controller');
 
 const userRouter = require('./routes/user.routes');
-
 const mealRouter = require('./routes/meal.routes');
 const orderRouter = require('./routes/order.routes');
 const restaurantRouter = require('./routes/restaurant.routes');
+
+const cartRouter = require('./routes/cart.routes');
 
 const app = express();
 
@@ -24,6 +25,8 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/restaurants', restaurantRouter);
 app.use('/api/v1/meals', mealRouter);
 app.use('/api/v1/orders', orderRouter);
+//nuevas rutas
+app.use('/api/v1/cart', cartRouter);
 
 app.all('*', (req, res, next) => {
   return next(

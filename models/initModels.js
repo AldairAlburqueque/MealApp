@@ -3,6 +3,7 @@ const Meals = require('./meals.model');
 const Orders = require('./orders.model');
 const Restaurants = require('./restaurants.model');
 const Reviews = require('./reviews.model');
+const Cart = require('./cart.model');
 
 const initModel = () => {
   // 1 User <--->M Orders
@@ -24,8 +25,17 @@ const initModel = () => {
   Meals.belongsTo(Restaurants);
 
   // 1 Meals <-----> 1 Orders
-  Meals.hasOne(Orders);
+  Meals.hasMany(Orders);
   Orders.belongsTo(Meals);
+
+  //NUEVAS RELACIONES
+  //1 User <---->M Cart
+  User.hasMany(Cart);
+  Cart.belongsTo(User);
+
+  //1 Meals <---->M Cart
+  Meals.hasMany(Cart);
+  Cart.belongsTo(Meals);
 };
 
 module.exports = initModel;

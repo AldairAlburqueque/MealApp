@@ -1,7 +1,6 @@
 const Meals = require('../models/meals.model');
 const Orders = require('../models/orders.model');
 const Restaurants = require('../models/restaurants.model');
-const User = require('../models/users.model');
 const AppError = require('../utils/appError');
 
 const catchAsync = require('../utils/catchAsync');
