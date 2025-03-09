@@ -1,6 +1,6 @@
-const { MEDIUMINT } = require('sequelize');
 const Cart = require('../models/cart.model');
 const Meals = require('../models/meals.model');
+const Restaurants = require('../models/restaurants.model');
 const catchAsync = require('../utils/catchAsync');
 
 exports.addToCart = catchAsync(async (req, res, next) => {
@@ -27,6 +27,24 @@ exports.addToCart = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: 'success',
     message: 'Meals haas been add to cart',
+    cart,
+  });
+});
+
+exports.findAllCart = catchAsync(async (req, res, next) => {
+  const cart = await Cart.findAll({
+    include: [
+      {
+        model: Meals,
+      },
+      {
+        model: Restaurants,
+      },
+    ],
+  });
+
+  res.status(200).json({
+    status: 'success',
     cart,
   });
 });

@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.post('/', cartController.addToCart);
 
+router.get('/', cartController.findAllCart);
+
 router
   .route('/:id')
   .patch(cartMiddleware.cartExist, cartController.updateCart)
